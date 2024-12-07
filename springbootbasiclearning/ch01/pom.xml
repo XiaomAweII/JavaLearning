@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.ch01</groupId>
+    <artifactId>ch01</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--1. 继承springboot的父项目-->
+    <!--
+           这是SpringBoot的父级依赖，这样当前的项目就是SpringBoot项目了
+           它用来提供相关的Maven默认依赖。使用它之后，常用的包依赖可以省去version标签。
+    -->
+    <parent>
+        <!--
+            spring-boot-starter-parent的父maven
+            它管理了Spring Boot应用里面的所有依赖版本；
+        -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <dependencies>
+        <!--2. 引入springboot的web支持-->
+        <!--
+            springboot场景启动器，帮我们导入了web模块正常运行所依赖的组件；
+            springboot将所有的功能场景都抽取出来，做成一个个的starters（启动类），只需要在项目李敏啊引入这些starter
+            相关场景的所有依赖都会导入进来，要用什么功能就导入什么场景的启动器
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <!--3. 这个插件，可以将应用打包成一个可执行的jar包-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+
+</project>
