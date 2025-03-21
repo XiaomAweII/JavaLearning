@@ -14,17 +14,21 @@
 
 首先提供SpringBoot2.1.0的 github 地址： github.com/spring-proj…
 
-因为要进行阅读源码和分析源码项目，我们是不是要在里面写一些注释帮助我们阅读理解源码，因此需要将 SpringBoot 源码项目 fork 到自己的 github 仓库中，然后再利用git clone url命令将已经 fork 到自己 github 仓库的 SpringBoot 源码拉取下来即可。 但由于以上方式往往很慢，通常会超时，所以笔者直接将 SpringBoot 项目直接下载下来，然后再导入 IDEA 中。
+因为要进行阅读源码和分析源码项目，我们是不是要在里面写一些注释帮助我们阅读理解源码，因此需要将 SpringBoot 源码项目 fork
+到自己的 github 仓库中，然后再利用git clone url命令将已经 fork 到自己 github 仓库的 SpringBoot 源码拉取下来即可。
+但由于以上方式往往很慢，通常会超时，所以笔者直接将 SpringBoot 项目直接下载下来，然后再导入 IDEA 中。
 
 ![img.png](imgs/04img.png)
 
 ## 4 将 SpringBoot 源码项目导入到 IDEA 中
 
-将刚才下载的 `spring-boot2.1.0.RELEASE` 项目选择 maven 方式导入到 IDEA 中，然后一直 next 即可导入完成，注意选择 JDK 版本是 1.8，maven 版本是 3.5+。
+将刚才下载的 `spring-boot2.1.0.RELEASE` 项目选择 maven 方式导入到 IDEA 中，然后一直 next 即可导入完成，注意选择 JDK 版本是
+1.8，maven 版本是 3.5+。
 
 ![img_1.png](imgs/04img_1.png)
 
-此时下载 maven 依赖是一个漫长的等待过程，建议 maven 没有配置（阿-里-云）仓库的小伙伴们配置一下，这样下载速度会快很多。参考配置 maven 使用（阿-里-云）仓库进行配置即可: https://blog.csdn.net/zhuzj12345/article/details/93200211。
+此时下载 maven 依赖是一个漫长的等待过程，建议 maven 没有配置（阿-里-云）仓库的小伙伴们配置一下，这样下载速度会快很多。参考配置
+maven 使用（阿-里-云）仓库进行配置即可: https://blog.csdn.net/zhuzj12345/article/details/93200211。
 
 ## 5 编译构建 SpringBoot 源码项目
 
@@ -34,7 +38,9 @@
 
 ![img_2.png](imgs/04img_2.png)
 
-2、可能有的小伙伴们的 `pom.xml` 文件的 project 标签上显示`java.lang.OutOfMemoryError`错误，这是因为 IDEA 里的 Maven 的 importer 设置的 JVM 最大堆内存过小而导致的，如下图,此时可参考Maven 依赖包导入错误（IntelliJ IDEA）解决即可: https://blog.csdn.net/w605283073/article/details/85107497。
+2、可能有的小伙伴们的 `pom.xml` 文件的 project 标签上显示`java.lang.OutOfMemoryError`错误，这是因为 IDEA 里的 Maven 的
+importer 设置的 JVM 最大堆内存过小而导致的，如下图,此时可参考Maven 依赖包导入错误（IntelliJ
+IDEA）解决即可: https://blog.csdn.net/w605283073/article/details/85107497。
 
 ![img_3.png](imgs/04img_3.png)
 
@@ -53,7 +59,8 @@ mvn clean install -DskipTests -Pfast
 
 6 运行 SpringBoot 自带的 sample
 
-因为 SpringBoot 源码中的 spring-boot-samples 模块自带了很多 DEMO 样例，我们可以利用其中的一个 sample 来测试运行刚刚构建的 springboot 源码项目即可。但此时发现 spring-boot-samples 模块是灰色的，如下图：
+因为 SpringBoot 源码中的 spring-boot-samples 模块自带了很多 DEMO 样例，我们可以利用其中的一个 sample 来测试运行刚刚构建的
+springboot 源码项目即可。但此时发现 spring-boot-samples 模块是灰色的，如下图：
 
 ![img_17.png](imgs/04img_17.png)
 
@@ -61,7 +68,8 @@ mvn clean install -DskipTests -Pfast
 
 ![img_18.png](imgs/04img_18.png)
 
-此时我们挑选 spring-boot-samples 模块下的 spring-boot-sample-tomcat 样例项目来测试好了，此时启动SampleTomcatApplication的main函数，启动成功界面如下：
+此时我们挑选 spring-boot-samples 模块下的 spring-boot-sample-tomcat
+样例项目来测试好了，此时启动SampleTomcatApplication的main函数，启动成功界面如下：
 
 ![img_19.png](imgs/04img_19.png)
 
