@@ -12,13 +12,13 @@ SpringBoot 自动配置原理是基于其大量的条件注解`ConditionalOnXXX`
 我们都知道，SpringBoot 自动配置是需要满足相应的条件才会自动配置,因此 SpringBoot 的自动配置大量应用了条件注解
 `ConditionalOnXXX`。如下图：
 
-![img.png](06img.png)
+![img.png](imgs/06img.png)
 
 那么上图的条件注解如何使用呢？
 
 > 举个栗子，我们来看下如何使用`@ConditionalOnClass`和`@ConditionalOnProperty`这两个注解，先看下图代码：
 
-![img_1.png](06img_1.png)
+![img_1.png](imgs/06img_1.png)
 
 `HelloWorldEnableAutoConfiguration`这个自动配置类应用了`@ConditionalOnClass`和`ConditionalOnProperty`两个条件注解，那么只有在满足
 `:classpath`中存在`HelloWorldComponent.class`和配置了`hello.world.name`和`hello.world.age`属性这两个条件的情况下才会创建
@@ -186,7 +186,7 @@ public interface AnnotatedTypeMetadata {
 
 通过 idea 调试看调用的栈帧，如下图：
 
-![img_2.png](06img_2.png)
+![img_2.png](imgs/06img_2.png)
 
 发现是在`ConditionEvaluator`的`shouldSkip`方法中调用了`LinuxCondition`的`matches`方法，自然我们再去看看
 `ConditionEvaluator`的`shouldSkip`的方法执行了什么逻辑。
@@ -264,7 +264,7 @@ matches(this.context, metadata)){
 
 那么看下 Spring 的`Condition`接口的具体实现类的类图：
 
-![img_3.png](06img_3.png)
+![img_3.png](imgs/06img_3.png)
 
 发现 Spring 内置的`Condition`接口的具体实现类虽然有多个，但只有`ProfileCondition`不是测试相关的，因此可以说真正的内置的
 `Condition`接口的具体实现类只有`ProfileCondition`一个，非常非常少,这跟 SpringBoot 的大量派生条件注解形成了鲜明的对比。
@@ -296,7 +296,7 @@ class ProfileCondition implements Condition {
 前面看到 Spring 对`Condition`的内置注解可以说只有`ProfileCondition`一个，但是我们都知道，SpringBoot 则内置了大量的条件注解
 `ConditionalOnXXX`。在分析前，我们先来看一下`SpringBootCondition`的整体类图来个整体的理解，如下图：
 
-![img_4.png](06img_4.png)
+![img_4.png](imgs/06img_4.png)
 
 可以看到`SpringBootCondition`作为 SpringBoot 条件注解的基类，处于整个类图的中心，它实现了`Condition`接口，然后又有很多具体的子类
 `OnXXXCondition`,这些`OnXXXCondition`其实就是`@ConditionalOnXXX`的条件类。
@@ -306,9 +306,9 @@ class ProfileCondition implements Condition {
 `SpringBootConditon`实现了`Condition`接口，作为 SpringBoot 众多条件注解`OnXXXCondtion`
 的父类，它的作用主要就是打印一些条件注解评估报告的日志，比如打印哪些配置类是符合条件注解的，哪些是不符合的。打印的日志形式如下图：
 
-![img_5.png](06img_5.png)
+![img_5.png](imgs/06img_5.png)
 
-![img_6.png](06img_6.png)
+![img_6.png](imgs/06img_6.png)
 
 因为`SpringBootConditon`实现了`Condition`接口，也实现了`matches`方法，因此该方法同样也是被`ConditionEvaluator`的
 `shouldSkip`方法中调用，因此我们就以`SpringBootConditon`的`matches`方法为入口去进行分析。直接上代码：
